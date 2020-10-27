@@ -58,5 +58,7 @@ function showSentence(response) {
   let humidity = Math.round(response.data.main.humidity);
   let windSpeed = Math.round(response.data.wind.speed);
   let h2 = document.querySelector("h2");
-  h2.innerHTML = `it is ${temperature}°F with a humidity of ${humidity}, and a wind speed of ${windSpeed} MPH.`;
+  h2.innerHTML = `${temperature}°F/C
+  ${humidity}% Humidity
+  ${windSpeed} MPH`;
 }
