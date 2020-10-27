@@ -57,7 +57,7 @@ function showSentence(response) {
   let temperature = Math.round(response.data.main.temp);
   let humidity = Math.round(response.data.main.humidity);
   let windSpeed = Math.round(response.data.wind.speed);
-  let temperatureLive = document.querySelector("temperature");
+  let temperatureLive = document.querySelector("#temperature");
 
   temperatureLive.innerHTML = `${temperature};`;
 }
