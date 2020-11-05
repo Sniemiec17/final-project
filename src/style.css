@@ -42,42 +42,6 @@ h2 {
   color: white;
 }
 
-h3 {
-  text-align: center;
-  padding: 30px 0px;
-  font-size: 20px;
-  color: white;
-}
-
-.card-body {
-  display: block;
-  margin: 0;
-  padding: 20px 60px;
-  background: rgba(255, 255, 255, 0.685);
-  text-align: center;
-}
-
-.card {
-  max-width: 50%;
-  background: rgba(255, 255, 255, 0);
-  margin-left: 230px;
-}
-
-.weekday {
-  color: rgba(224, 95, 56, 0.897);
-  font-style: bold;
-  font-size: 20px;
-  text-align: center;
-}
-
-.weather-high {
-  text-align: left;
-}
-
-.weather-low {
-  text-align: left;
-}
-
 button {
   color: rgb(219, 118, 87);
   border: rgba(170, 85, 106, 0.89);
@@ -100,9 +64,24 @@ button:hover {
 input {
   text-align: center;
   margin-left: 360px;
+  padding: 3px;
+  margin-top: 10px;
 }
 
 .githublink {
   text-align: center;
   color: white;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
