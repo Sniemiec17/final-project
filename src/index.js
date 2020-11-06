@@ -3,8 +3,16 @@ let currentTime = document.querySelector(".time-and-date");
 
 let date = now.getDate();
 let hours = now.getHours();
-let minutes = now.getMinutes();
 let year = now.getFullYear();
+let minutes = now.getMinutes();
+
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
+
+if (hours < 10) {
+  hours = `0 ${hours}`;
+}
 
 let days = [
   "Sunday",
@@ -34,7 +42,7 @@ let months = [
 
 let month = months[now.getMonth()];
 
-currentTime.innerHTML = `${day} ${month} ${date}, ${hours}:${minutes}, ${year}`;
+currentTime.innerHTML = `${day} ${month} ${date}, ${year} ${hours}:${minutes}`;
 
 function showCity(event) {
   event.preventDefault();
@@ -49,8 +57,8 @@ formControl.addEventListener("submit", showCity);
 
 function displayCity(city) {
   let apiKey = "642951862a7920f532185fc7d53ba878";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
-  axios.get(apiUrl).then(showSentence);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeather);
 }
 
 function showWeather(response) {
@@ -59,11 +67,12 @@ function showWeather(response) {
   let windElement = document.querySelector("#wind");
   let iconElement = document.querySelector("#icon");
   let descriptionElement = document.querySelector("#description");
+  let cityElement = document.querySelector("#city");
   celciusTemperature = response.data.main.temp;
   temperatureElement.innerHTML = Math.round(celciusTemperature);
   humidityElement.innerHTML = Math.round(response.data.main.humidity);
   windElement.innerHTML = Math.round(response.data.wind.speed);
-  descriptionElement.innerHTML = response.data.weather[0].description;
+  descriptionElement.innerHTML = `The city is experiencing ${response.data.weather[0].description}`;
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -84,12 +93,12 @@ function showCelcius(event) {
   event.preventDefault;
   celciusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
-  let temperatureElement = document.querySelector("#temperature");
+  let celciusTemperature = ((fahrenheitTemperature - 32) * 5) / 9;
   temperatureElement.innerHTML = Math.round(celciusTemperature);
 }
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+fahrenheitLink.addEventListener("click", showFahrenheit);
 
 let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
+celsiusLink.addEventListener("click", showCelcius);
