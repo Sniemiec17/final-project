@@ -54,13 +54,13 @@ function displayCity(city) {
 }
 
 function showWeather(response) {
-  let weatherElement = document.querySelector("#temperature");
+  let temperatureElement = document.querySelector("#temperature");
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
   let iconElement = document.querySelector("#icon");
   let descriptionElement = document.querySelector("#description");
   celciusTemperature = response.data.main.temp;
-  temperatureElement.innerHTML = Math.round(CelciusTemperature);
+  temperatureElement.innerHTML = Math.round(celciusTemperature);
   humidityElement.innerHTML = Math.round(response.data.main.humidity);
   windElement.innerHTML = Math.round(response.data.wind.speed);
   descriptionElement.innerHTML = response.data.weather[0].description;
