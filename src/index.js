@@ -1,48 +1,32 @@
-let now = new Date();
-let currentTime = document.querySelector(".time-and-date");
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
 
-let date = now.getDate();
-let hours = now.getHours();
-let year = now.getFullYear();
-let minutes = now.getMinutes();
-
-if (minutes < 10) {
-  minutes = `0${minutes}`;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${formatHours(timestamp)}`;
 }
 
-if (hours < 10) {
-  hours = `0 ${hours}`;
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
 }
-
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-
-let months = [
-  "Jan",
-  "Feb",
-  "March",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
-let month = months[now.getMonth()];
-
-currentTime.innerHTML = `${day} ${month} ${date}, ${year} ${hours}:${minutes}`;
 
 function showCity(event) {
   event.preventDefault();
@@ -90,7 +74,7 @@ function showFahrenheit(event) {
 }
 
 function showCelcius(event) {
-  event.preventDefault;
+  event.preventDefault();
   celciusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
   let celciusTemperature = ((fahrenheitTemperature - 32) * 5) / 9;
